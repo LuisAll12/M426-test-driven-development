@@ -24,4 +24,13 @@ describe("formatting duration", () => {
     test("3999 seconds should be formatted as 1h 6m 39s", () => {
         expect(formatDuration(3999)).toBe("1h 6m 39s");
     });
+
+    test("negative seconds should throw an error", () => {
+        expect(() => formatDuration(-1)).toThrow("Negative duration is not allowed");
+    });
+    
+    test("seconds with decimal places should be rounded", () => {
+        expect(formatDuration(59.6)).toBe("1m");
+        expect(formatDuration(1.4)).toBe("1s");
+    });
 })
