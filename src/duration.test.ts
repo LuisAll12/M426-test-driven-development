@@ -33,4 +33,16 @@ describe("formatting duration", () => {
         expect(formatDuration(59.6)).toBe("1m");
         expect(formatDuration(1.4)).toBe("1s");
     });
-})
+});
+
+describe("formatting duration with only hours", () => {
+    test.each([
+        [3600, "1h"],
+        [7200, "2h"],
+        [10800, "3h"],
+        [14400, "4h"],
+        [3999, "1h 6m 39s"]
+    ])("formatDuration(%d) should be %s", (input, expected) => {
+        expect(formatDuration(input)).toBe(expected);
+    });
+});
