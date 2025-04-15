@@ -14,7 +14,10 @@ export function calcPoints(input: string): number {
 }
 
 
-export function possibleCheckout(x: number): string {
-  console.log(x);
-  throw new Error("not implemented yet");
+export function possibleCheckout(currentScore: number): string | null {
+  const rest = 501 - currentScore;
+  if (rest % 2 !== 0) return null;
+  const doubleValue = rest / 2;
+  if (doubleValue > 20) return null;
+  return `Double ${doubleValue}`;
 }
