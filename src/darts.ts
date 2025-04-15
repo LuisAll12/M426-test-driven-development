@@ -1,12 +1,15 @@
 // src/darts.ts
 
 export function calcPoints(input: string): number {
-  const tokens = input.split(" ").map(Number);
+  if (!input.trim()) return 0; // ⬅️ schützt vor leerer Eingabe
+
+  const tokens = input.trim().split(" ").map(Number);
   let score = 0;
 
   for (let i = 0; i < tokens.length; i += 2) {
     const multiplier = tokens[i];
     const value = tokens[i + 1];
+    if (isNaN(multiplier) || isNaN(value)) continue;
     score += multiplier * value;
   }
 
